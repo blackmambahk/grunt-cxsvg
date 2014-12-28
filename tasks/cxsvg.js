@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('cxsvg', 'The best Grunt plugin ever.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({dir: 'assets/svg', outputFiel: 'wjicons.svg'});
+    var options = this.options({dir: 'assets/svg', outputFile: 'wjicons.svg'});
 
     var stack = grunt.file.expand({cwd : options.dir}, '*.svg');
 
