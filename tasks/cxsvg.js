@@ -31,9 +31,12 @@ module.exports = function(grunt) {
     }
   };
   var rxEnableBg = /enable-background="[^"]*"/g;
-  var rxStripGrid = /<g[^>]*>(.*)?<\/g>/g;
+  var rxEnableBgStyle = /style="enable-background:new 0 0 32 32;"/g;
+  var rxXWhiteSpace =  /xml:space="preserve"/g;
+  var rxStripGrid = /<g id="icomoon-ignore">(.*?)<\/g>/;
   var rxStripSize = / (height|width|x|y)="[^"]*"/g;
-
+  var rxStripCr = /[\n\r\t]/g;
+  var rxStripWhitespace = />\s+</g;
   /**
    * Helper function to map svg file names to view 'pod' containing a "use" tag
    * @param {string} name svg filename including extension
@@ -66,10 +69,11 @@ module.exports = function(grunt) {
         next(stack, options);
       }else {
         try {
-          svgo.optimize(grunt.file.read(options.dir+file), function (result) {
+          var svgin = grunt.file.read(options.dir+file).replace(rxStripCr,'').replace(rxStripWhitespace,'').replace(rxEnableBg,'').replace(rxEnableBgStyle,'').replace(rxXWhiteSpace,'').replace(rxStripSize,'').replace(rxStripGrid,'');///.replace('<g>','').replace('<\/g>','');
+          svgo.optimize(svgin, function (result) {
             logger.log('write '+file);
-            var svg = result.data.replace('<svg ', '<symbol id="'+(file.replace('.svg', ''))+'"').replace('<\/svg>','<\/symbol>').replace('xmlns="http://www.w3.org/2000/svg"','').replace(rxEnableBg,'').replace(rxStripSize,'').replace(rxStripGrid,'');
-            options.svginfo+=svg;
+            options.svginfo+= result.data.replace('<svg ', '<symbol id="'+(file.replace('.svg', ''))+'"').replace('<\/svg>','<\/symbol>').replace('xmlns="http://www.w3.org/2000/svg"','');
+
             next(stack, options);
           });
         } catch (e) {
