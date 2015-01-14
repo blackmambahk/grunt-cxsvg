@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         next(stack, options);
       }else {
         try {
-          var svgin = grunt.file.read(options.dir+file).replace(rxStripCr,'').replace(rxStripWhitespace,'').replace(rxEnableBg,'').replace(rxEnableBgStyle,'').replace(rxXWhiteSpace,'').replace(rxStripSize,'').replace(rxStripGrid,'');///.replace('<g>','').replace('<\/g>','');
+          var svgin = grunt.file.read(options.dir+file).replace(rxStripCr,'').replace(rxStripWhitespace,'><').replace(rxEnableBg,'').replace(rxEnableBgStyle,'').replace(rxXWhiteSpace,'').replace(rxStripSize,'').replace(rxStripGrid,'');///.replace('<g>','').replace('<\/g>','');
           svgo.optimize(svgin, function (result) {
             logger.log('write '+file);
             options.svginfo+= result.data.replace('<svg ', '<symbol id="'+(file.replace('.svg', ''))+'"').replace('<\/svg>','<\/symbol>').replace('xmlns="http://www.w3.org/2000/svg"','');
