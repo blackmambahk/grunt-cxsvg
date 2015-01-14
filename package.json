@@ -1,7 +1,7 @@
 {
   "name": "grunt-cxsvg",
   "description": "The cx svg optimizer.",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "homepage": "https://github.com/blackmambahk/grunt-cxsvg",
   "author": {
     "name": "robert.edgar",
