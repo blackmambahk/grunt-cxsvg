@@ -1,7 +1,7 @@
 {
   "name": "grunt-cxsvg",
   "description": "The cx svg optimizer.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "homepage": "https://github.com/blackmambahk/grunt-cxsvg",
   "author": {
     "name": "robert.edgar",
@@ -26,20 +26,25 @@
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {
-    "svgo": "~0.5.0"
-  },
   "devDependencies": {
     "svgo": "~0.5.0",
-    "grunt-contrib-jshint": "^0.9.2",
+    "grunt": "~0.4.5",
     "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-nodeunit": "^0.3.3",
-    "grunt": "~0.4.5"
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-nodeunit": "^0.3.3"
+  },
+  "dependencies": {
+    "svgo": "~0.5.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
   },
   "keywords": [
+    "svg",
+    "icon",
+    "sprite",
+    "cx",
+    "cm",
     "gruntplugin"
   ]
 }

@@ -2,7 +2,7 @@
  * grunt-cxsvg
  * https://github.com/blackmambahk/grunt-cxsvg
  *
- * Copyright (c) 2014 robert.edgar
+ * Copyright (c) 2014 Robert Edgar
  * Licensed under the MIT license.
  * Optimize individual svg files and generate a single svg container file with embedded symbols
  */
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
           var svgin = grunt.file.read(options.dir+file).replace(rxStripCr,'').replace(rxStripWhitespace,'><').replace(rxEnableBg,'').replace(rxEnableBgStyle,'').replace(rxXWhiteSpace,'').replace(rxStripSize,'').replace(rxStripGrid,'');///.replace('<g>','').replace('<\/g>','');
           svgo.optimize(svgin, function (result) {
             logger.log('write '+file);
-            options.svginfo+= result.data.replace('<svg ', '<symbol id="'+(file.replace('.svg', ''))+'"').replace('<\/svg>','<\/symbol>').replace('xmlns="http://www.w3.org/2000/svg"','');
+            options.svginfo+= result.data.replace('<svg ', '<symbol id="'+options.prefix+(file.replace('.svg', ''))+'"').replace('<\/svg>','<\/symbol>').replace('xmlns="http://www.w3.org/2000/svg"','');
 
             next(stack, options);
           });
@@ -97,9 +97,9 @@ module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerTask('cxsvg', 'The cx svg optimizer plugin.', function() {
+  grunt.registerMultiTask('cxsvg', 'The cx svg optimizer plugin.', function() {
     //load options
-    var options = this.options({dir: 'assets/svg/', outputFile: 'wjicons.svg'});
+    var options = this.options({dir: 'assets/svg/', outputFile: 'wjicons.svg', prefix:''});
     //get file list from glob and start processing
     next(grunt.file.expand({cwd : options.dir}, '*.svg'), options);
   });
