@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     var rxStripCr = /[\n\r\t]/g;
     var rxStripWhitespace = />\s+</g;
     var htmlTemplate = '<!doctype html><html><head><style>.pod{float:left;width:100px;height:100px;text-align:center;border: 1px solid #666;margin: 5px;padding: 5px;}svg{width:50px;height:50px;fill:black !important;}</style><head><body>#SVG#</body></html>';
-    var svgDocHeader = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
+    var svgDocHeader = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgsymbols" width="0" height="0">';
     /**
      * Helper function to map svg file names to view 'pod' containing a "use" tag
      * @param {string} filepath svg full filepath including name and extension
