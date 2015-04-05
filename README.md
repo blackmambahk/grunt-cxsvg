@@ -18,7 +18,7 @@ grunt.loadNpmTasks('grunt-cxsvg');
 ```
 
 ## The "cxsvg" task
-
+//npm publish ./
 ### Overview
 In your project's Gruntfile, add a section named `cxsvg` to the data object passed into `grunt.initConfig()`.
 
@@ -28,8 +28,13 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
+    wj:{
+        prefix:'i-',
+        files:{ 'assets/icons/wjicons.svg': ['assets/svgs/wj/*.svg']}
+    },
     your_target: {
       // Target-specific file lists and/or options go here.
+
     },
   },
 });

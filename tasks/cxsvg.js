@@ -45,8 +45,8 @@ module.exports = function(grunt) {
      * @returns {string}
      */
     function useMapHelper(filepath) {
-        var name = path.basename(filepath);
-        return '<div class="pod"><svg><use xlink:href="#' + name.replace('.svg', '') + '" /></svg><div class="title">'+name +'</div></div>';
+        var name = path.basename(filepath).replace('.svg', '');
+        return '<div class="pod"><svg><use xlink:href="#' + name + '" /></svg><div class="title">'+name +'</div></div>';
     }
 
 
