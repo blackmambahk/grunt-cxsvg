@@ -45,7 +45,7 @@ module.exports = function(grunt) {
      * @returns {string}
      */
     function useMapHelper(filepath) {
-        var name = path.basename(filepath).replace('.svg', '');
+        var name = this.prefix+path.basename(filepath).replace('.svg', '');
         return '<div class="pod"><svg><use xlink:href="#' + name + '" /></svg><div class="title">'+name +'</div></div>';
     }
 
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
             //log start info
             logger.log('processing '+(stack.length-1)+' files');
             //store useinfo
-            options.useinfo = stack.map(useMapHelper).join('');
+            options.useinfo = stack.map(useMapHelper,options).join('');
             //write svg header
             options.svginfo = svgDocHeader;
         }
